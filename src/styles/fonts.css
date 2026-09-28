@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Mimloo Neulis';
+  src: url('/fonts/MimlooNeulis-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Mimloo Neulis';
+  src: url('/fonts/MimlooNeulis-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: block;
+}

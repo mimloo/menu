@@ -1,0 +1,68 @@
+/* Board canvas: fixed 1920x1080, exported at 2x = 3840x2160. Never make this responsive. */
+.board {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--cream);
+  color: var(--green);
+  font-family: 'Mimloo Neulis', system-ui, sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  font-kerning: normal;
+  font-feature-settings: 'kern', 'liga';
+}
+.board * { box-sizing: border-box; }
+.abs { position: absolute; }
+.art { position: absolute; display: block; pointer-events: none; }
+
+/* Text boxes are trimmed to cap-height..baseline, so `top` = the cap top of the first line. */
+.t {
+  display: block;
+  margin: 0;
+  white-space: pre-line;
+  text-box: trim-both cap alphabetic;
+  line-height: 1.2;
+}
+.reg { font-weight: 400; }
+/* Illustrator tracking -20 used on most mid-size type in the PDF. */
+.tight { letter-spacing: -0.02em; }
+
+.section-title { font-size: 63.7px; letter-spacing: 0; }
+.rule { width: 107px; height: 1.8px; background: var(--rule); }
+
+/* Dish */
+.dish { position: absolute; }
+.dish-name { font-size: 37.2px; letter-spacing: -0.022em; }
+.dish-price { position: absolute; top: 4px; font-size: 31.8px; font-weight: 400; letter-spacing: -0.014em; }
+.dish-sub { font-size: 21.2px; margin-top: 23.3px; }
+.dish-desc { font-size: 14.2px; font-weight: 400; line-height: 17px; margin-top: 18.5px; }
+
+.icon-row { position: absolute; display: flex; align-items: center; height: 32.7px; }
+.icon-row .div { width: 1px; height: 31.1px; background: var(--card-stroke); margin: 0 12.3px; }
+.icon-row .grp { display: flex; align-items: center; gap: 6.8px; }
+.icon-row .portions { gap: 9.6px; }
+
+/* Pills */
+.pill {
+  position: absolute;
+  height: 35.8px;
+  border-radius: 4px;
+  background: var(--mint);
+}
+
+/* Pick lists */
+.pick-title { font-size: 37.8px; letter-spacing: -0.02em; }
+.pick-rule { font-size: 18.9px; margin-top: 15px; }
+.pick-items { margin-top: 33.3px; position: relative; }
+.pick-item { font-size: 14.4px; font-weight: 400; position: relative; }
+.pick-item + .pick-item { margin-top: 11.66px; }
+.pick-mark { position: absolute; }
+
+/* Cards */
+.card {
+  position: absolute;
+  border: 2.5px solid var(--card-stroke);
+  border-radius: 12px;
+  background: var(--cream);
+}

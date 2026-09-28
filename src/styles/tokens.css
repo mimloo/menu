@@ -1,0 +1,16 @@
+/* Mimloo brand palette (../social/brand/brand-guide.md) plus the exact tints used in the menu PDF. */
+:root {
+  --cream: #f8f8ee;
+  --mint: #adc9b5;
+  --green: #5e7d6b;
+  --green-legend: #4c7e6b;
+  --sky: #aec8e1;
+  --rule: #a2c7e0;
+  --teal: #345a5f;
+  --terracotta: #d8a48f;
+  --yellow: #f5e6a6;
+  --pink: #e7c6c2;
+  --card-stroke: #a1c8b4;
+  --panel: #edecda;
+  --on-peach: #f6f6ed;
+}

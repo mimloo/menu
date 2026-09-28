@@ -1,0 +1,32 @@
+/* Phone-first chrome around the boards (not part of the exported images). */
+html, body { margin: 0; background: #eeeee2; }
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: max(16px, env(safe-area-inset-top)) 16px 32px;
+  font-family: 'Mimloo Neulis', system-ui, sans-serif;
+  color: var(--green);
+}
+.app-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  position: sticky; top: 0; z-index: 2; padding: 12px 0; background: #eeeee2;
+}
+.app-head h1 { font-size: 22px; font-weight: 500; margin: 0; }
+.app-head p { font-size: 13px; font-weight: 400; margin: 4px 0 0; opacity: 0.8; }
+.board-card { margin: 12px 0 24px; }
+.board-card-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.board-card-head h2 { flex: 1 1 200px; }
+.board-card-head h2 { font-size: 16px; font-weight: 500; margin: 0; }
+.actions { display: flex; gap: 8px; }
+.board-fit { width: 100%; overflow: hidden; border-radius: 8px; box-shadow: 0 1px 4px rgb(0 0 0 / 0.12); }
+.btn {
+  font: 500 15px 'Mimloo Neulis', system-ui, sans-serif;
+  color: var(--green); background: var(--cream);
+  border: 1.5px solid var(--mint); border-radius: 999px;
+  padding: 10px 16px; min-height: 44px; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; white-space: nowrap;
+}
+.btn.primary { background: var(--green); border-color: var(--green); color: var(--cream); }
+.btn:disabled { opacity: 0.45; cursor: default; }
+.app-foot { display: flex; justify-content: center; }
+body:has(.board:only-child) { background: var(--cream); }
