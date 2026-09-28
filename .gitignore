@@ -6,3 +6,4 @@ ref
 .vercel
 .claude/settings.local.json
 *.tsbuildinfo
+.env*
