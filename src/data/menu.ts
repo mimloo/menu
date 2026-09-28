@@ -157,7 +157,7 @@ export const buildABowl = {
 
 export const combos = {
   title: 'OR GRAB A COMBO',
-  tagline: 'A delicious bowl lready put together for you. Same portions, none of the decisions.',
+  tagline: 'A delicious bowl already put together for you. Same portions, none of the decisions.',
   // Bowl photos come from Shopify ("Build Your Own Bowl" variants) - they are canonical.
   items: [
     {
@@ -256,7 +256,7 @@ export const coffee: DrinkTable = {
     { name: 'Flat white', prices: [6.6, 7.95, null] },
     { name: 'Latte', prices: [6.4, 7.75, null] },
   ],
-  footer: { name: 'Single spresso shot', price: 4.4 },
+  footer: { name: 'Single espresso shot', price: 4.4 },
 };
 
 export const tea: DrinkTable = {
