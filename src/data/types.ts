@@ -42,6 +42,8 @@ export interface Drink {
   name: string;
   prices: (number | null)[];
   chefsPick?: boolean;
+  /** Small line under the name, e.g. tea flavors. */
+  flavors?: string[];
 }
 
 export interface DrinkTable {
