@@ -270,7 +270,7 @@ export const tea: DrinkTable = {
     { name: 'Houjicha Cocoa', prices: [null, 7.1, 8.45], chefsPick: true },
     { name: 'Hot chocolate', prices: [5.95, 7.25, null] },
     { name: 'Hot tea', prices: [null, 4.75, null], flavors: ['Peppermint', 'Chamomile', 'Earl Grey', 'Jade Green'] },
-    { name: 'Iced tea', prices: [null, null, 4.75], flavors: ['Black', 'Peach', 'Hibiscus'] },
+    { name: 'Iced tea', prices: [null, 4.75, null], flavors: ['Black', 'Peach', 'Hibiscus'] },
     { name: 'Hibiscus limeade', prices: [null, 7.1, 8.45] },
     { name: 'Thai tea', prices: [null, 7.1, 8.45] },
   ],
@@ -280,5 +280,5 @@ export const addOns = {
   title: 'Add-ons',
   tagline: 'Make it yours',
   price: 1,
-  items: ['Extra espresso shot', 'Flavored syrup', 'Make it iced', 'Make it decaf', 'Whipped cream'],
+  items: ['Extra espresso shot', 'Flavored syrup', 'Make it decaf', 'Whipped cream'],
 };
