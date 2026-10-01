@@ -265,9 +265,9 @@ export const tea: DrinkTable = {
   sizes: ['8oz', '12oz', '16oz'],
   drinks: [
     { name: 'Matcha latte', prices: [null, 7.45, 8.8] },
+    { name: 'Houjicha', prices: [null, 7.1, 8.45], chefsPick: true },
     { name: 'Masala chai', prices: [null, 7.1, 8.45] },
     { name: 'London fog', prices: [null, 7.1, 8.45] },
-    { name: 'Houjicha Cocoa', prices: [null, 7.1, 8.45], chefsPick: true },
     { name: 'Hot chocolate', prices: [5.95, 7.25, null] },
     { name: 'Hot tea', prices: [null, 4.75, null], flavors: ['Peppermint', 'Chamomile', 'Earl Grey', 'Jade Green'] },
     { name: 'Iced tea', prices: [null, 4.75, null], flavors: ['Black', 'Peach', 'Hibiscus'] },
