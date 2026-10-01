@@ -14,6 +14,8 @@ and the phone shares it to the Menu Board app.
   Use `<Art name="..." />`.
 - Bowl photos: `public/assets/bowl-{mika,pilu,remi,ollie}.png`. These are the canonical Shopify variant images of the
   "Build Your Own Bowl" product; if a bowl photo changes, re-download it from Shopify.
+- Launcher icon: `public/icons/icon.svg` (TV + Mimloo emblem, from `../social/brand/logos`); `npm run icons` renders the
+  PNGs listed in `public/manifest.webmanifest`.
 - Fonts: `public/fonts/MimlooNeulis-{Regular,Medium}.woff2`, built by `tools/build-font.py`.
 
 ## Rules
