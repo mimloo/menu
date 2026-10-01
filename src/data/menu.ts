@@ -264,7 +264,7 @@ export const tea: DrinkTable = {
   tagline: 'Something soothing',
   sizes: ['8oz', '12oz', '16oz'],
   drinks: [
-    { name: 'Matcha latte', prices: [null, 7.45, 8.8] },
+    { name: 'Matcha', prices: [null, 7.45, 8.8] },
     { name: 'Houjicha', prices: [null, 7.1, 8.45], chefsPick: true },
     { name: 'Masala chai', prices: [null, 7.1, 8.45] },
     { name: 'London fog', prices: [null, 7.1, 8.45] },
