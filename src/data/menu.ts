@@ -270,7 +270,7 @@ export const tea: DrinkTable = {
     { name: 'London fog', prices: [null, 7.1, 8.45] },
     { name: 'Hot chocolate', prices: [5.95, 7.25, null] },
     { name: 'Hot tea', prices: [null, 4.75, null], flavors: ['Peppermint', 'Chamomile', 'Earl Grey', 'Jade Green'] },
-    { name: 'Iced tea', prices: [null, 4.75, null], flavors: ['Black', 'Peach', 'Hibiscus'] },
+    { name: 'Iced tea', prices: [null, 4.75, null], flavors: ['Black', 'Peach', 'Elderberry Hibiscus'] },
     { name: 'Thai tea', prices: [null, 7.1, 8.45] },
   ],
 };
