@@ -104,7 +104,7 @@ export const mains = {
 
 export const buildABowl = {
   title: 'BUILD YOUR OWN BOWL',
-  price: 16,
+  price: 17,
   tagline: 'A hearty, full-size bowl made the way you like it.',
   extra: '$0.50 for each extra topping',
   groups: [
@@ -271,7 +271,6 @@ export const tea: DrinkTable = {
     { name: 'Hot chocolate', prices: [5.95, 7.25, null] },
     { name: 'Hot tea', prices: [null, 4.75, null], flavors: ['Peppermint', 'Chamomile', 'Earl Grey', 'Jade Green'] },
     { name: 'Iced tea', prices: [null, 4.75, null], flavors: ['Black', 'Peach', 'Hibiscus'] },
-    { name: 'Hibiscus limeade', prices: [null, 7.1, 8.45] },
     { name: 'Thai tea', prices: [null, 7.1, 8.45] },
   ],
 };
