@@ -22,7 +22,7 @@ export const brunch = {
       subtitle: 'Jammy turkish slow-cooked eggs',
       description: 'Jammy Turkish slow-cooked eggs with whipped garlic skyr,\nconfit tomato, herb oil, grilled country bread.',
       allergens: ['gluten', 'dairy', 'egg'],
-      nutrition: ['protein', 'wholeGrain', 'goodFats'],
+      nutrition: ['protein', 'goodFats'],
     },
     {
       name: 'Ube Frittata',
@@ -46,7 +46,7 @@ export const brunch = {
       price: 17,
       subtitle: 'Traditional migas con huevos',
       description: 'Toasted tortilla chips and egg scramble with tomato\nand onion sofrito with a goddess crema base.',
-      allergens: ['dairy', 'egg'],
+      allergens: ['egg'],
       nutrition: ['antioxidant', 'protein'],
     },
     {
@@ -54,8 +54,8 @@ export const brunch = {
       price: 19,
       subtitle: 'Hawaiian breakfast bowl, mimloo style',
       description: 'Hawaiian breakfast with jasmine rice, herb turkey patty, mushroom\ngravy, caramelized onion, whipped sweet potato, scrambled egg, scallion.',
-      allergens: ['egg'],
-      nutrition: ['antioxidant', 'goodFats'],
+      allergens: ['dairy', 'egg', 'treeNut'],
+      nutrition: ['protein', 'antioxidant', 'goodFats'],
     },
     {
       name: 'Sunbutter Toastie',
@@ -77,7 +77,7 @@ export const mains = {
       price: 19,
       subtitle: 'Slow-braised achiote pork pibil sandwich',
       description: 'Slow-braised achiote pork pibil sandwich on ciabatta with pickled\nred onion, avocado, fresh cilantro.',
-      allergens: ['gluten', 'dairy'],
+      allergens: ['gluten'],
       nutrition: ['protein', 'goodFats'],
       chefsPick: true,
     },
@@ -86,8 +86,8 @@ export const mains = {
       price: 18,
       subtitle: 'Coconut-turmeric mojo jackfruit bao buns',
       description: 'Coconut-turmeric mojo jackfruit bao buns with shredded purple cabbage,\nsmoked beet hummus, caramelized onion, toasted hemp seed.',
-      allergens: ['treeNut'],
-      nutrition: ['wholeGrain', 'antioxidant', 'goodFats'],
+      allergens: ['gluten', 'treeNut', 'vegan'],
+      nutrition: ['antioxidant', 'goodFats'],
     },
     {
       name: 'Sunday Meatballs',
