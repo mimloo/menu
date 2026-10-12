@@ -253,7 +253,7 @@ export const coffee: DrinkTable = {
     { name: 'Cortado', prices: [5.6, null, null] },
     { name: 'Macchiato', prices: [4.8, null, null] },
     { name: 'Cappuccino', prices: [6.4, 7.75, null] },
-    { name: 'Flat white', prices: [6.6, 7.95, null] },
+    { name: 'Flat white', prices: [6.4, 7.75, null] },
     { name: 'Latte', prices: [6.4, 7.75, null] },
   ],
   footer: { name: 'Single espresso shot', price: 4.4 },
