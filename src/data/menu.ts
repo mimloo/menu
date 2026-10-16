@@ -277,6 +277,6 @@ export const tea: DrinkTable = {
 export const addOns = {
   title: 'Add-ons',
   tagline: 'Make it yours',
-  price: 1,
+  price: [0.5, 1] as const, // shown as a range: $0.50 – $1.00
   items: ['Extra espresso shot', 'Flavored syrup', 'Make it decaf', 'Whipped cream'],
 };

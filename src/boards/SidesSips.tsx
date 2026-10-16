@@ -71,7 +71,7 @@ export function SidesSips() {
         {addOns.tagline}
       </div>
       <div className="t abs reg tight" style={{ left: 992, top: 792.9, fontSize: 30.6 }}>
-        {money(addOns.price)}
+        {addOns.price.map(money).join(' – ')}
       </div>
       {addOns.items.map((a, i) => (
         <div key={a} className="t abs" style={{ left: 1446.6, top: 679.9 + i * 30.6, fontSize: 20 }}>
