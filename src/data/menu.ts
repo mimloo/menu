@@ -61,7 +61,7 @@ export const brunch = {
       name: 'Sunbutter Toastie',
       price: 15,
       subtitle: 'Thick-cut toast, slow-caramelized banana',
-      description: 'Thick-cut toast with sunbutter, slow-caramelized banana,\nhouse berry jam, flaky sea salt, hemp seed.',
+      description: 'Thick-cut toast with sunbutter, slow-caramelized banana,\nhouse berry jam, flaky sea salt.',
       allergens: ['gluten'],
       nutrition: ['antioxidant', 'goodFats'],
     },
@@ -85,7 +85,7 @@ export const mains = {
       name: 'Jackfruit Pillows',
       price: 18,
       subtitle: 'Coconut-turmeric mojo jackfruit bao buns',
-      description: 'Coconut-turmeric mojo jackfruit bao buns with shredded purple cabbage,\nsmoked beet hummus, caramelized onion, toasted hemp seed.',
+      description: 'Coconut-turmeric mojo jackfruit bao buns with shredded purple cabbage,\nsmoked beet hummus, caramelized onion.',
       allergens: ['gluten', 'treeNut', 'vegan'],
       nutrition: ['antioxidant', 'goodFats'],
     },
@@ -145,7 +145,6 @@ export const buildABowl = {
         { name: 'Pickled red onion' },
         { name: 'Pickled cucumber' },
         { name: 'Shredded purple cabbage' },
-        { name: 'Hemp seed' },
         { name: 'Sweet potato puree' },
         { name: 'Cauliflower mash' },
         { name: 'Russet potato hash' },
@@ -163,7 +162,7 @@ export const combos = {
     {
       name: 'Mika',
       price: 18,
-      description: 'Jasmine rice, grilled chicken,\ncoconut turmeric mojo, pickled\ncucumber, purple cabbage,\nhemp seed, scallion.',
+      description: 'Jasmine rice, grilled chicken,\ncoconut turmeric mojo, pickled\ncucumber, purple cabbage,\nscallion.',
       image: 'bowl-mika.png',
     },
     {
@@ -181,7 +180,7 @@ export const combos = {
     {
       name: 'Ollie',
       price: 18,
-      description: 'Tri-color quinoa, jackfruit\ncarnitas, cauliflower mash,\nspinach, sunny lemon\nvinaigrette, avocado,\nhemp seed',
+      description: 'Tri-color quinoa, jackfruit\ncarnitas, cauliflower mash,\nspinach, sunny lemon\nvinaigrette, avocado',
       image: 'bowl-ollie.png',
     },
   ] satisfies Combo[],
