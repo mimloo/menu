@@ -234,6 +234,8 @@ export const lilSides = {
 export const freshlyBaked = {
   title: 'FRESHLY-BAKED',
   tagline: 'Small-batch, made the same morning',
+  // Shown as a pill under the tagline; set to '' when pastries are back.
+  soldOut: 'Sold out today',
 };
 
 export const sips = {

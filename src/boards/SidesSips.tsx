@@ -56,6 +56,13 @@ export function SidesSips() {
 
       {/* Freshly-baked */}
       <SectionHeader title={freshlyBaked.title} tagline={freshlyBaked.tagline} x={68.8} y={683.8} size={70.2} ruleGap={25} taglineGap={23.4} ruleX={5.5} taglineX={3.9} />
+      {freshlyBaked.soldOut && (
+        <div className="abs" style={{ left: 500, top: 772.5, height: 35.8, padding: '9.9px 11px 0', boxSizing: 'border-box', borderRadius: 4, background: 'var(--mint)' }}>
+          <div className="t reg" style={{ fontSize: 21.6 }}>
+            {freshlyBaked.soldOut}
+          </div>
+        </div>
+      )}
 
       {/* Sips & pours */}
       <SectionHeader title={sips.title} tagline={sips.tagline} x={992} y={62.2} size={70.2} ruleGap={28} taglineGap={19.2} ruleX={0} />
