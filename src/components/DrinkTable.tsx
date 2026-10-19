@@ -63,17 +63,21 @@ export function DrinkTable({ table, x, ruleWidth, colRights, footerRight }: Prop
         );
       })}
 
-      {table.footer && (
+      {table.footer?.length ? (
         <>
           <div className="abs" style={{ left: x, top: footerRule, width: ruleWidth, height: 2, background: 'var(--rule)' }} />
-          <div className="t abs" style={{ left: x, top: footerRule + 18.8, fontSize: 20 }}>
-            {table.footer.name}
-          </div>
-          <div className="t abs reg" style={{ left: (footerRight ?? colRights.at(-1)!) - 100, width: 100, top: footerRule + 18.8, fontSize: 20, textAlign: 'right' }}>
-            {money(table.footer.price)}
-          </div>
+          {table.footer.map((f, i) => (
+            <div key={f.name}>
+              <div className="t abs" style={{ left: x, top: footerRule + 18.8 + i * ROW, fontSize: 20 }}>
+                {f.name}
+              </div>
+              <div className="t abs reg" style={{ left: (footerRight ?? colRights.at(-1)!) - 100, width: 100, top: footerRule + 18.8 + i * ROW, fontSize: 20, textAlign: 'right' }}>
+                {money(f.price)}
+              </div>
+            </div>
+          ))}
         </>
-      )}
+      ) : null}
     </>
   );
 }

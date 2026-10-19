@@ -51,6 +51,6 @@ export interface DrinkTable {
   tagline: string;
   sizes: string[];
   drinks: Drink[];
-  /** Row under a divider at the bottom of the table, e.g. single espresso shot. */
-  footer?: { name: string; price: number };
+  /** Single-price rows under a divider at the bottom of the table, e.g. single espresso shot. */
+  footer?: { name: string; price: number }[];
 }
