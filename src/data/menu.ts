@@ -249,15 +249,15 @@ export const coffee: DrinkTable = {
   sizes: ['8oz', '12oz', '16oz'],
   drinks: [
     { name: 'Cold brew', prices: [null, 5.8, 7.15] },
-    { name: 'Americano', prices: [null, 5.0, 6.35] },
-    { name: 'Cortado', prices: [5.6, null, null] },
+    { name: 'Americano', prices: [4.8, 5.0, 6.35] },
     { name: 'Cappuccino', prices: [6.4, 7.75, null] },
     { name: 'Flat white', prices: [6.4, 7.75, null] },
-    { name: 'Latte', prices: [6.4, 7.75, null] },
+    { name: 'Latte', prices: [null, 6.4, 7.75] },
   ],
   footer: [
-    { name: 'Single espresso shot', price: 4.4 },
+    { name: 'Espresso shot', price: 4.4 },
     { name: 'Macchiato', price: 4.8 },
+    { name: 'Cortado', price: 5.6 },
   ],
 };
 
