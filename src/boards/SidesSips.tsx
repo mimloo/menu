@@ -15,7 +15,7 @@ const FRESH_Y = 708; // cap top of the Freshly-baked title
 // Drawn back to front; w is the board width, height follows the image.
 const PASTRIES = [
   { name: 'muffin', x: 1634, y: 770, w: 172 },
-  { name: 'scone', x: 1492, y: 872, w: 200 },
+  { name: 'scone', x: 1540, y: 872, w: 200 },
   { name: 'cookie', x: 1730, y: 828, w: 162 },
 ];
 const ADD = { x: SIPS - 16, y: 912, w: 876, h: 120 }; // Add-ons box, sitting on the wave
