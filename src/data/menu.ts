@@ -30,7 +30,6 @@ export const brunch = {
       description: 'Heirloom ube and purple sweet potato frittata with caramelized onion, herb oil, fresh parsley, served with lemony dressed greens.',
       allergens: ['dairy', 'egg'],
       nutrition: ['antioxidant', 'protein'],
-      chefsPick: true,
     },
     {
       name: 'Cacao Cloud',
@@ -55,6 +54,7 @@ export const brunch = {
       description: 'Hawaiian breakfast with jasmine rice, herb turkey patty, mushroom gravy, caramelized onion, whipped sweet potato, scrambled egg, scallion.',
       allergens: ['dairy', 'egg', 'treeNut'],
       nutrition: ['protein', 'antioxidant', 'goodFats'],
+      chefsPick: true,
     },
     {
       name: 'Sunbutter Toastie',
