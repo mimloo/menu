@@ -2,63 +2,63 @@ import type { DrinkTable as Table } from '../data/types';
 import { money } from '../lib/format';
 import { Icon } from './Art';
 
-const ROW = 30.5;
-const FLAVOR_ROW = 19; // extra height for a flavors line
-const COL_W = 52;
+const SIZE = 24; // row text
+const ROW = 37;
+const FLAVOR_ROW = 26; // extra height for a flavors line
+const PRICE_W = 100;
 
 interface Props {
   table: Table;
   x: number;
   ruleWidth: number;
-  /** Right edge of each size column (prices are right-aligned, sizes centered). */
+  /** Right edge of each size column (prices are right-aligned; size labels are centered over the price). */
   colRights: number[];
   footerRight?: number;
 }
 
 export function DrinkTable({ table, x, ruleWidth, colRights, footerRight }: Props) {
-  const rowsTop = 340.8;
+  const rowsTop = 326;
   const tops: number[] = [];
   let y = rowsTop;
   for (const d of table.drinks) {
     tops.push(y);
     y += ROW + (d.flavors?.length ? FLAVOR_ROW : 0);
   }
-  const footerRule = y;
+  const footerRule = y - 4;
+  const price = (p: number, right: number, top: number, key?: number) => (
+    <div key={key} className="t abs reg" style={{ left: right - PRICE_W, width: PRICE_W, top, fontSize: SIZE, textAlign: 'right' }}>
+      {money(p, true)}
+    </div>
+  );
   return (
     <>
-      <div className="t abs tight" style={{ left: x, top: 217.4, fontSize: 37.8 }}>
+      <div className="t abs tight" style={{ left: x, top: 206, fontSize: 36 }}>
         {table.title}
       </div>
-      <div className="t abs" style={{ left: x, top: 258.5, fontSize: 18.9 }}>
+      <div className="t abs ink" style={{ left: x, top: 248, fontSize: 20 }}>
         {table.tagline}
       </div>
       {table.sizes.map((s, i) => (
-        <div key={s} className="t abs" style={{ left: colRights[i] - COL_W - 10, width: COL_W + 20, top: 291.4, fontSize: 20, textAlign: 'center' }}>
+        <div key={s} className="t abs ink" style={{ left: colRights[i] - 60, width: 70, top: 282, fontSize: 20, textAlign: 'center' }}>
           {s}
         </div>
       ))}
-      <div className="abs" style={{ left: x, top: 320.9, width: ruleWidth, height: 2, background: 'var(--rule)' }} />
+      <div className="abs" style={{ left: x, top: 306, width: ruleWidth, height: 2, background: 'var(--rule)' }} />
 
       {table.drinks.map((d, r) => {
         const top = tops[r];
         return (
           <div key={d.name}>
-            {d.chefsPick && <Icon name="chef-star" w={22.3} style={{ position: 'absolute', left: x - 28.9, top: top - 2.6 }} />}
-            <div className="t abs" style={{ left: x, top, fontSize: 20 }}>
+            {d.chefsPick && <Icon name="chef-star" w={26} style={{ position: 'absolute', left: x - 33, top: top - 4 }} />}
+            <div className="t abs" style={{ left: x, top, fontSize: SIZE, whiteSpace: 'nowrap' }}>
               {d.name}
             </div>
             {d.flavors?.length ? (
-              <div className="t abs reg" style={{ left: x, top: top + 23, fontSize: 14.4 }}>
+              <div className="t abs reg ink" style={{ left: x, top: top + 29, fontSize: 17, whiteSpace: 'nowrap' }}>
                 {d.flavors.join(' · ')}
               </div>
             ) : null}
-            {d.prices.map((p, i) =>
-              p == null ? null : (
-                <div key={i} className="t abs reg" style={{ left: colRights[i] - 100, width: 100, top, fontSize: 20, textAlign: 'right' }}>
-                  {money(p)}
-                </div>
-              ),
-            )}
+            {d.prices.map((p, i) => (p == null ? null : price(p, colRights[i], top, i)))}
           </div>
         );
       })}
@@ -68,12 +68,10 @@ export function DrinkTable({ table, x, ruleWidth, colRights, footerRight }: Prop
           <div className="abs" style={{ left: x, top: footerRule, width: ruleWidth, height: 2, background: 'var(--rule)' }} />
           {table.footer.map((f, i) => (
             <div key={f.name}>
-              <div className="t abs" style={{ left: x, top: footerRule + 18.8 + i * ROW, fontSize: 20 }}>
+              <div className="t abs" style={{ left: x, top: footerRule + 20 + i * ROW, fontSize: SIZE }}>
                 {f.name}
               </div>
-              <div className="t abs reg" style={{ left: (footerRight ?? colRights.at(-1)!) - 100, width: 100, top: footerRule + 18.8 + i * ROW, fontSize: 20, textAlign: 'right' }}>
-                {money(f.price)}
-              </div>
+              {price(f.price, footerRight ?? colRights.at(-1)!, footerRule + 20 + i * ROW)}
             </div>
           ))}
         </>

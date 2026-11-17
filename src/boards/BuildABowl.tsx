@@ -4,17 +4,18 @@ import { SectionHeader } from '../components/SectionHeader';
 import { buildABowl, combos, sensory } from '../data/menu';
 import { money } from '../lib/format';
 
-const PICK_X = [73.7, 313.9, 582.9, 854.2];
-const CARD_X = [70.9, 321.6, 572.4, 823.1];
+const PICK_X = [72, 302, 560, 858];
+const CARD = { x: 72, y: 700, w: 260, h: 356, gap: 14 };
+const PANEL = { x: 1196, y: 50, w: 656, h: 770 };
 
-function Pill({ text, x, y, w, pad }: { text: string; x: number; y: number; w: number; pad: number }) {
+/** Mint pill sized to its text. `x`/`y` = top-left. */
+function Pill({ text, x, y }: { text: string; x: number; y: number }) {
   return (
-    <>
-      <div className="pill" style={{ left: x, top: y, width: w }} />
-      <div className="t abs reg" style={{ left: x + pad, top: y + 9.9, fontSize: 21.6 }}>
+    <div className="pill" style={{ left: x, top: y, padding: '0 14px', display: 'flex', alignItems: 'center' }}>
+      <div className="t reg ink" style={{ fontSize: 21, whiteSpace: 'nowrap' }}>
         {text}
       </div>
-    </>
+    </div>
   );
 }
 
@@ -28,52 +29,43 @@ export function BuildABowl() {
       <Art name="plant-sprout" x={1740.7} y={882.2} style={{ transform: 'scaleX(-1)' }} />
 
       {/* Build your own */}
-      <SectionHeader title={buildABowl.title} tagline={buildABowl.tagline} x={74.3} y={62.5} size={64.8} ruleGap={27.7} taglineGap={16.7} />
-      <div className="t abs reg" style={{ left: 894.7, top: 68, fontSize: 52.2 }}>
+      <SectionHeader title={buildABowl.title} tagline={buildABowl.tagline} x={72} y={50} size={60} ruleGap={20} taglineGap={16} taglineSize={24} />
+      <div className="t abs reg" style={{ left: 816, top: 54, fontSize: 52 }}>
         {money(buildABowl.price)}
       </div>
-      <Pill text={buildABowl.extra} x={728.3} y={140} w={324} pad={11} />
+      <Pill text={buildABowl.extra} x={728} y={116} />
       {buildABowl.groups.map((g, i) => (
-        <PickList key={g.title} group={g} x={PICK_X[i]} y={215.2} indent={i === 3 ? 4 : 0} />
+        <PickList key={g.title} group={g} x={PICK_X[i]} y={200} />
       ))}
 
       {/* Combos */}
-      <SectionHeader title={combos.title} tagline={combos.tagline} x={64.1} y={528.2} size={64.8} ruleGap={26.3} taglineGap={16.6} ruleX={8.9} taglineX={7.9} />
+      <SectionHeader title={combos.title} tagline={combos.tagline} x={72} y={590} size={52} ruleGap={16} taglineGap={14} taglineSize={22} />
       {combos.items.map((c, i) => (
-        <div key={c.name} className="card" style={{ left: CARD_X[i], top: 666.2, width: 240.7, height: 344.4 }}>
-          <div className="t abs tight" style={{ left: 15.3, top: 16.3, fontSize: 25 }}>
+        <div key={c.name} className="card" style={{ left: CARD.x + i * (CARD.w + CARD.gap), top: CARD.y, width: CARD.w, height: CARD.h }}>
+          <div className="t abs tight" style={{ left: 16, top: 18, fontSize: 30, whiteSpace: 'nowrap' }}>
             {c.name}
+            <span className="reg" style={{ marginLeft: 14 }}>
+              {money(c.price)}
+            </span>
           </div>
-          <div className="t abs reg" style={{ left: 155, top: 18.5, fontSize: 22.5 }}>
-            {money(c.price)}
-          </div>
-          <p className="t abs reg" style={{ left: 15.7, top: 61.6, fontSize: 13.5, lineHeight: '16.2px' }}>
+          <p className="t abs reg ink" style={{ left: 16, top: 62, width: CARD.w - 28, fontSize: 19.5, lineHeight: '24px' }}>
             {c.description}
           </p>
-          <img src={`/assets/${c.image}`} alt="" className="art" style={{ left: 19, top: 142.5, width: 198, height: 198 }} />
+          <img src={`/assets/${c.image}`} alt="" className="art" style={{ left: (CARD.w - 5 - 150) / 2, top: CARD.h - 5 - 152, width: 150, height: 150 }} />
         </div>
       ))}
 
       {/* Sensory friendly */}
-      <div className="abs" style={{ left: 1167.8, top: 53.5, width: 637.4, height: 757, background: 'var(--panel)', borderRadius: 16 }} />
-      <SectionHeader
-        title={sensory.title}
-        tagline={sensory.tagline}
-        x={1236.2}
-        y={120}
-        size={70.2}
-        titleLineHeight={67.5}
-        ruleGap={37}
-        taglineGap={16.6}
-      />
-      <div className="t abs reg" style={{ left: 1625.9, top: 129.1, fontSize: 52.2 }}>
+      <div className="abs" style={{ left: PANEL.x, top: PANEL.y, width: PANEL.w, height: PANEL.h, background: 'var(--panel)', borderRadius: 16 }} />
+      <SectionHeader title={sensory.title} tagline={sensory.tagline} x={1250} y={110} size={66} titleLineHeight={64} ruleGap={28} taglineGap={16} taglineSize={24} />
+      <div className="t abs reg" style={{ left: 1712, top: 116, fontSize: 52 }}>
         {money(sensory.price)}
       </div>
-      <Art name="sensory-character" />
-      <PickList group={sensory.groups[0]} x={1239.2} y={377.8} />
-      <PickList group={sensory.groups[1]} x={1419.9} y={377.8} />
-      <Pill text={sensory.extra} x={1234.3} y={667.7} w={318.4} pad={7.4} />
-      <Art name="house-cloud" />
+      <Art name="sensory-character" x={1700} y={206} />
+      <PickList group={sensory.groups[0]} x={1250} y={366} />
+      <PickList group={sensory.groups[1]} x={1474} y={366} />
+      <Pill text={sensory.extra} x={1246} y={712} />
+      <Art name="house-cloud" x={1560} y={636} />
     </>
   );
 }

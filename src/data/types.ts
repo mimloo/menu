@@ -4,7 +4,8 @@ export type Nutrition = 'protein' | 'wholeGrain' | 'antioxidant' | 'goodFats' | 
 export interface Dish {
   name: string;
   price: number;
-  subtitle: string;
+  /** Round photo: public/photos/<photo>.jpg (see scripts/photos.json). */
+  photo?: string;
   description: string;
   allergens: Allergen[];
   nutrition: Nutrition[];
@@ -33,8 +34,9 @@ export interface Combo {
 export interface Side {
   name: string; // use \n to force a line break
   price: number;
-  note?: string; // small text after the name, e.g. "a perfect\nlittle plate"
+  note?: string; // small text after the price, e.g. "a perfect little plate"
   highlight?: boolean;
+  photo?: string;
 }
 
 /** Drink row; prices line up with the table's size columns (8oz, 12oz, 16oz). null = not offered. */

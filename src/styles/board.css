@@ -16,6 +16,12 @@
 .abs { position: absolute; }
 .art { position: absolute; display: block; pointer-events: none; }
 
+/*
+ * Legibility floor (1080p canvas on a ~55" TV is ~40 px per inch, read from ~6-10 ft):
+ *   item names >= 36px, prices >= 28px, descriptions/list items >= 21px (combo cards 19.5px), labels >= 17px.
+ * Small and body text uses --teal (7:1 on cream); brand --green (4.3:1) is kept for large type.
+ */
+
 /* Text boxes are trimmed to cap-height..baseline, so `top` = the cap top of the first line. */
 .t {
   display: block;
@@ -25,39 +31,45 @@
   line-height: 1.2;
 }
 .reg { font-weight: 400; }
+.ink { color: var(--teal); }
 /* Illustrator tracking -20 used on most mid-size type in the PDF. */
 .tight { letter-spacing: -0.02em; }
 
-.section-title { font-size: 63.7px; letter-spacing: 0; }
-.rule { width: 107px; height: 1.8px; background: var(--rule); }
+.rule { width: 107px; height: 2px; background: var(--rule); }
 
-/* Dish */
+/* Round product photos (plates are shot overhead, so a circle crop reads as the plate). */
+.photo {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 3px var(--cream), 0 0 0 5px var(--card-stroke);
+}
+
+/* Dish: photo on the left, name + price, description, allergen/nutrition icons. */
 .dish { position: absolute; }
-.dish-name { font-size: 37.2px; letter-spacing: -0.022em; }
-.dish-price { position: absolute; top: 4px; font-size: 31.8px; font-weight: 400; letter-spacing: -0.014em; }
-.dish-sub { font-size: 21.2px; margin-top: 23.3px; }
-.dish-desc { font-size: 14.2px; font-weight: 400; line-height: 17px; margin-top: 18.5px; }
+.dish-name { font-size: 38px; letter-spacing: -0.022em; white-space: nowrap; }
+.dish-price { font-weight: 400; letter-spacing: -0.014em; margin-left: 18px; }
+.dish-desc { font-size: 21px; font-weight: 400; line-height: 26px; margin-top: 17px; color: var(--teal); }
 
-.icon-row { position: absolute; display: flex; align-items: center; height: 32.7px; }
-.icon-row .div { width: 1px; height: 31.1px; background: var(--card-stroke); margin: 0 12.3px; }
-.icon-row .grp { display: flex; align-items: center; gap: 6.8px; }
-.icon-row .portions { gap: 9.6px; }
+.icon-row { display: flex; align-items: center; height: 26px; margin-top: 15px; }
+.icon-row .div { width: 1.5px; height: 24px; background: var(--card-stroke); margin: 0 14px; }
+.icon-row .grp { display: flex; align-items: center; gap: 9px; }
 
 /* Pills */
 .pill {
   position: absolute;
-  height: 35.8px;
-  border-radius: 4px;
+  height: 40px;
+  border-radius: 6px;
   background: var(--mint);
 }
 
 /* Pick lists */
-.pick-title { font-size: 37.8px; letter-spacing: -0.02em; }
-.pick-rule { font-size: 18.9px; margin-top: 15px; }
-.pick-items { margin-top: 33.3px; position: relative; }
-.pick-item { font-size: 14.4px; font-weight: 400; position: relative; }
-.pick-item + .pick-item { margin-top: 11.66px; }
-.pick-mark { position: absolute; }
+.pick-title { font-size: 34px; letter-spacing: -0.02em; }
+.pick-rule { font-size: 20px; margin-top: 14px; color: var(--teal); }
+.pick-items { margin-top: 26px; position: relative; color: var(--teal); }
+.pick-item { font-size: 23px; font-weight: 400; position: relative; }
+.pick-item + .pick-item { margin-top: 15px; }
 
 /* Cards */
 .card {

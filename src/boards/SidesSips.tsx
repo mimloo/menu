@@ -1,12 +1,14 @@
 import { Art } from '../components/Art';
 import { DrinkTable } from '../components/DrinkTable';
 import { ParentsNote } from '../components/ParentsNote';
+import { Photo } from '../components/Photo';
 import { SectionHeader } from '../components/SectionHeader';
 import { addOns, coffee, freshlyBaked, lilSides, sips, tea } from '../data/menu';
 import { money } from '../lib/format';
 
-const TILE_X = [72.2, 345.7, 619.2];
-const TILE_Y = [236.1, 404.8];
+// Lil' sides: 2 columns x 3 rows of tiles, each with a round photo on the left.
+const TILE = { x: [72, 504], y: [206, 356, 506], w: 416, h: 136, photo: 108 };
+const header = { y: 50, size: 60, ruleGap: 20, taglineGap: 16, taglineSize: 24 };
 
 export function SidesSips() {
   return (
@@ -18,70 +20,87 @@ export function SidesSips() {
       <Art name="plant-sprout" x={1690.6} y={881.9} style={{ transform: 'scaleX(-1)' }} />
 
       {/* Lil' sides */}
-      <SectionHeader title={lilSides.title} tagline={lilSides.tagline} x={73.1} y={63.4} size={70.2} ruleGap={29.1} taglineGap={22.7} ruleX={5.4} taglineX={3.8} />
-      <Art name="cloud-little-size" />
-      <div className="t abs" style={{ left: 671.2, top: 105.1, fontSize: 21.6 }}>
+      <SectionHeader title={lilSides.title} tagline={lilSides.tagline} x={72} {...header} />
+      <Art name="cloud-little-size" x={540} y={22} w={360} />
+      <div className="t abs" style={{ left: 667, top: 98, fontSize: 23 }}>
         {lilSides.badge.title}
       </div>
-      <div className="t abs reg" style={{ left: 669.4, top: 135.4, fontSize: 14.4 }}>
+      <div className="t abs reg ink" style={{ left: 665, top: 131, fontSize: 17 }}>
         {lilSides.badge.subtitle}
       </div>
-      {lilSides.items.map((s, i) => (
-        <div
-          key={s.name}
-          className="card"
-          style={{
-            left: TILE_X[i % 3],
-            top: TILE_Y[Math.floor(i / 3)],
-            width: 261.6,
-            height: 157.3,
-            background: s.highlight ? 'var(--mint)' : 'transparent',
-            borderColor: s.highlight ? 'var(--mint)' : undefined,
-          }}
-        >
-          <div className="t abs tight" style={{ left: 19.6, top: 18, fontSize: 30, lineHeight: '33.3px' }}>
-            {s.name}
-          </div>
-          {s.note && (
-            <div className="t abs tight" style={{ left: 142, top: 60.4, fontSize: 17, lineHeight: '21.3px' }}>
-              {s.note}
+      {lilSides.items.map((s, i) => {
+        const left = TILE.x[i % 2];
+        const top = TILE.y[Math.floor(i / 2)];
+        const pad = (TILE.h - TILE.photo) / 2;
+        const textX = pad + TILE.photo + 20;
+        return (
+          <div
+            key={s.name}
+            className="card"
+            style={{
+              left,
+              top,
+              width: TILE.w,
+              height: TILE.h,
+              background: s.highlight ? 'var(--mint)' : 'transparent',
+              borderColor: s.highlight ? 'var(--mint)' : undefined,
+            }}
+          >
+            {s.photo && <Photo name={s.photo} x={pad - 2.5} y={pad - 2.5} d={TILE.photo} style={s.highlight ? { boxShadow: 'none' } : undefined} />}
+            <div className="t abs tight" style={{ left: textX, top: 20, fontSize: 27, lineHeight: '31px', color: s.highlight ? 'var(--teal)' : undefined }}>
+              {s.name}
             </div>
-          )}
-          <div className="t abs reg tight" style={{ left: 18.5, top: 116.7, fontSize: 22.7 }}>
-            {money(s.price)}
+            <div className="t abs reg tight" style={{ left: textX, top: 92, fontSize: 28, color: s.highlight ? 'var(--teal)' : undefined }}>
+              {money(s.price)}
+              {s.note && (
+                <span style={{ fontSize: 19, marginLeft: 14, letterSpacing: 0 }}>{s.note}</span>
+              )}
+            </div>
           </div>
-        </div>
-      ))}
-      <Art name="little-face" />
+        );
+      })}
+      <Art name="little-face" x={TILE.x[1] + TILE.w - 34} y={TILE.y[2] + TILE.h - 26} />
 
       {/* Freshly-baked */}
-      <SectionHeader title={freshlyBaked.title} tagline={freshlyBaked.tagline} x={68.8} y={683.8} size={70.2} ruleGap={25} taglineGap={23.4} ruleX={5.5} taglineX={3.9} />
+      <SectionHeader title={freshlyBaked.title} tagline={freshlyBaked.tagline} x={72} y={696} size={60} ruleGap={20} taglineGap={16} taglineSize={24} />
       {freshlyBaked.soldOut && (
-        <div className="abs" style={{ left: 500, top: 772.5, height: 35.8, padding: '9.9px 11px 0', boxSizing: 'border-box', borderRadius: 4, background: 'var(--mint)' }}>
-          <div className="t reg" style={{ fontSize: 21.6 }}>
+        <div className="pill" style={{ left: 560, top: 768, padding: '0 14px', display: 'flex', alignItems: 'center' }}>
+          <div className="t reg ink" style={{ fontSize: 21 }}>
             {freshlyBaked.soldOut}
           </div>
         </div>
       )}
 
       {/* Sips & pours */}
-      <SectionHeader title={sips.title} tagline={sips.tagline} x={992} y={62.2} size={70.2} ruleGap={28} taglineGap={19.2} ruleX={0} />
-      <DrinkTable table={coffee} x={992} ruleWidth={371.6} colRights={[1221.8, 1291.5, 1360.9]} footerRight={1355.6} />
-      <DrinkTable table={tea} x={1446.6} ruleWidth={405} colRights={[1708.9, 1777.8, 1851.8]} />
+      <SectionHeader title={sips.title} tagline={sips.tagline} x={992} {...header} ruleX={0} />
+      {sips.photos.map((p, i) => {
+        const d = 104;
+        const x = 1514 + i * 116;
+        return (
+          <div key={p.photo}>
+            <Photo name={p.photo} x={x} y={26} d={d} />
+            <div className="t abs ink" style={{ left: x - 20, width: d + 40, top: 146, fontSize: 17, textAlign: 'center' }}>
+              {p.label}
+            </div>
+          </div>
+        );
+      })}
+      <DrinkTable table={coffee} x={992} ruleWidth={400} colRights={[1228, 1308, 1388]} />
+      <DrinkTable table={tea} x={1442} ruleWidth={408} colRights={[1690, 1770, 1850]} />
 
       {/* Add-ons */}
-      <div className="card" style={{ left: 976.5, top: 660.2, width: 876.9, height: 186.3, background: 'transparent' }} />
-      <div className="t abs tight" style={{ left: 992, top: 679.7, fontSize: 42.9 }}>
+      <div className="card" style={{ left: 976, top: 712, width: 876, height: 150, background: 'transparent' }} />
+      <div className="t abs tight" style={{ left: 1000, top: 736, fontSize: 40 }}>
         {addOns.title}
       </div>
-      <div className="t abs" style={{ left: 992, top: 727.8, fontSize: 21.4 }}>
+      <div className="t abs ink" style={{ left: 1000, top: 786, fontSize: 21 }}>
         {addOns.tagline}
       </div>
-      <div className="t abs reg tight" style={{ left: 992, top: 792.9, fontSize: 30.6 }}>
-        {addOns.price.map(money).join(' – ')}
+      <div className="t abs reg tight" style={{ left: 1000, top: 822, fontSize: 28 }}>
+        {addOns.price.map((p) => money(p, true)).join(' – ')}
       </div>
       {addOns.items.map((a, i) => (
-        <div key={a} className="t abs" style={{ left: 1446.6, top: 679.9 + i * 30.6, fontSize: 20 }}>
+        <div key={a} className="t abs" style={{ left: i < 2 ? 1300 : 1580, top: 762 + (i % 2) * 44, fontSize: 23 }}>
           {a}
         </div>
       ))}

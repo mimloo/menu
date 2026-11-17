@@ -12,6 +12,9 @@ and the phone shares it to the Menu Board app.
 - Layout per board: `src/boards/BrunchMains.tsx`, `BuildABowl.tsx`, `SidesSips.tsx`. Shared pieces are in `src/components/`.
 - Art: `public/assets/*.svg`, sliced from the design PDF by `tools/slice.py`; sizes are in `src/lib/art.json`.
   Use `<Art name="..." />`.
+- Dish/side/drink photos: `public/photos/<name>.jpg`, referenced by `photo:` in `menu.ts` and shown as circles
+  (`<Photo />`). They are the Shopify product images: URLs in `scripts/photos.json`, regenerated (downloaded, cropped,
+  resized) with `npm run photos`. To add one, put the product's image URL in `photos.json` and re-run.
 - Bowl photos: `public/assets/bowl-{mika,pilu,remi,ollie}.png`. These are the canonical Shopify variant images of the
   "Build Your Own Bowl" product; if a bowl photo changes, re-download it from Shopify.
 - Launcher icon: `public/icons/icon.svg` (TV + Mimloo emblem, from `../social/brand/logos`); `npm run icons` renders the
@@ -24,7 +27,13 @@ and the phone shares it to the Menu Board app.
   to cap height (`.t` class), so a `top` value means the cap top of the first line.
 - Adding items can overflow a section. After a change, check the rendered PNG to confirm nothing collides or runs
   off the board. If it doesn't fit, say so and suggest what to cut or shrink; don't silently shrink fonts.
-- Keep brand colors to the tokens in `src/styles/tokens.css`.
+- Keep brand colors to the tokens in `src/styles/tokens.css`. Small/body text is `--teal` (7:1 contrast on cream);
+  `--green` is for big type only (4.3:1). Text on mint pills must be teal.
+- **Legibility floor** (the boards are read from across the counter): item names ≥ 36px, prices ≥ 28px,
+  descriptions and list items ≥ 21px (combo cards: 19.5px, the most they fit), smallest labels ≥ 17px.
+  Don't go below these to make something fit; cut instead.
+- Prices render without `$` and without `.00` (`money()` in `src/lib/format.ts`; `CURRENCY` brings the sign back).
+  Drink columns use two decimals.
 
 ## Verify every change
 ```

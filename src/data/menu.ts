@@ -5,7 +5,7 @@ import type { Combo, Dish, DrinkTable, PickGroup, Side } from './types';
 export const parentsNote = {
   title: ['A note', 'for parents'],
   lead: 'Every dish has a kid version:',
-  body: 'smaller portion, components served separated,\nmilder seasoning, easier-to-eat shapes. Just order, and we’ll plate it for the littles.',
+  body: 'smaller portion, components served separated, milder seasoning, easier-to-eat shapes. Just order, and we’ll plate it for the littles.',
   pill: 'HALF PORTION, HALF COST!',
 };
 
@@ -18,50 +18,50 @@ export const brunch = {
   dishes: [
     {
       name: 'Dippy Eggs',
+      photo: 'dippy-eggs',
       price: 18,
-      subtitle: 'Jammy turkish slow-cooked eggs',
-      description: 'Jammy Turkish slow-cooked eggs with whipped garlic skyr,\nconfit tomato, herb oil, grilled country bread.',
+      description: 'Jammy Turkish slow-cooked eggs with whipped garlic skyr, confit tomato, herb oil, grilled country bread.',
       allergens: ['gluten', 'dairy', 'egg'],
       nutrition: ['protein', 'goodFats'],
     },
     {
       name: 'Ube Frittata',
+      photo: 'ube-frittata',
       price: 17,
-      subtitle: 'Heirloom ube and purple sweet potato',
-      description: 'Heirloom ube and purple sweet potato frittata with caramelized\nonion, herb oil, fresh parsley, served with lemony dressed greens.',
+      description: 'Heirloom ube and purple sweet potato frittata with caramelized onion, herb oil, fresh parsley, served with lemony dressed greens.',
       allergens: ['dairy', 'egg'],
       nutrition: ['antioxidant', 'protein'],
       chefsPick: true,
     },
     {
       name: 'Cacao Cloud',
+      photo: 'cacao-cloud',
       price: 18,
-      subtitle: 'Two light and fluffy waffles',
-      description: 'Two light and fluffy waffles with whipped coconut\ncream, raw cacao, toasted muesli, fresh seasonal fruit, agave.',
+      description: 'Two light and fluffy waffles with whipped coconut cream, raw cacao, toasted muesli, fresh seasonal fruit, agave.',
       allergens: ['gluten', 'treeNut'],
       nutrition: ['antioxidant', 'goodFats'],
     },
     {
       name: 'Migas Breakfast',
+      photo: 'migas-breakfast',
       price: 17,
-      subtitle: 'Traditional migas con huevos',
-      description: 'Toasted tortilla chips and egg scramble with tomato\nand onion sofrito with a goddess crema base.',
+      description: 'Toasted tortilla chips and egg scramble with tomato and onion sofrito with a goddess crema base.',
       allergens: ['egg'],
       nutrition: ['antioxidant', 'protein'],
     },
     {
       name: 'Loco Moco',
+      photo: 'loco-moco',
       price: 19,
-      subtitle: 'Hawaiian breakfast bowl, mimloo style',
-      description: 'Hawaiian breakfast with jasmine rice, herb turkey patty, mushroom\ngravy, caramelized onion, whipped sweet potato, scrambled egg, scallion.',
+      description: 'Hawaiian breakfast with jasmine rice, herb turkey patty, mushroom gravy, caramelized onion, whipped sweet potato, scrambled egg, scallion.',
       allergens: ['dairy', 'egg', 'treeNut'],
       nutrition: ['protein', 'antioxidant', 'goodFats'],
     },
     {
       name: 'Sunbutter Toastie',
+      photo: 'sunbutter-toastie',
       price: 15,
-      subtitle: 'Thick-cut toast, slow-caramelized banana',
-      description: 'Thick-cut toast with sunbutter, slow-caramelized banana,\nhouse berry jam, flaky sea salt.',
+      description: 'Thick-cut toast with sunbutter, slow-caramelized banana, house berry jam, flaky sea salt.',
       allergens: ['gluten'],
       nutrition: ['antioxidant', 'goodFats'],
     },
@@ -74,26 +74,26 @@ export const mains = {
   dishes: [
     {
       name: 'Pibil Sandwich',
+      photo: 'pibil-sandwich',
       price: 19,
-      subtitle: 'Slow-braised achiote pork pibil sandwich',
-      description: 'Slow-braised achiote pork pibil sandwich on ciabatta with pickled\nred onion, avocado, fresh cilantro.',
+      description: 'Slow-braised achiote pork pibil sandwich on ciabatta with pickled red onion, avocado, fresh cilantro.',
       allergens: ['gluten'],
       nutrition: ['protein', 'goodFats'],
       chefsPick: true,
     },
     {
       name: 'Jackfruit Pillows',
+      photo: 'jackfruit-pillows',
       price: 18,
-      subtitle: 'Coconut-turmeric mojo jackfruit bao buns',
-      description: 'Coconut-turmeric mojo jackfruit bao buns with shredded purple cabbage,\nsmoked beet hummus, caramelized onion.',
+      description: 'Coconut-turmeric mojo jackfruit bao buns with shredded purple cabbage, smoked beet hummus, caramelized onion.',
       allergens: ['gluten', 'treeNut', 'vegan'],
       nutrition: ['antioxidant', 'goodFats'],
     },
     {
       name: 'Sunday Meatballs',
+      photo: 'sunday-meatballs',
       price: 19,
-      subtitle: 'Turkey meatballs in creamy gravy',
-      description: 'Turkey meatballs, creamy gravy, house berry jam, cauliflower mash,\npickled cucumber, fresh dill.',
+      description: 'Turkey meatballs, creamy gravy, house berry jam, cauliflower mash, pickled cucumber, fresh dill.',
       allergens: ['dairy', 'egg'],
       nutrition: ['protein', 'goodFats'],
     },
@@ -162,25 +162,25 @@ export const combos = {
     {
       name: 'Mika',
       price: 18,
-      description: 'Jasmine rice, grilled chicken,\ncoconut turmeric mojo, pickled\ncucumber, purple cabbage,\nscallion.',
+      description: 'Jasmine rice, grilled chicken, coconut turmeric mojo, pickled cucumber, purple cabbage, scallion.',
       image: 'bowl-mika.png',
     },
     {
       name: 'Pilü',
       price: 18,
-      description: 'Tri-color quinoa, soft boiled\negg, smoked beet hummus,\nspinach, pickled red onion,\ngarlic skyr, herb oil, flaky salt.',
+      description: 'Tri-color quinoa, soft boiled egg, smoked beet hummus, spinach, pickled red onion, garlic skyr, herb oil, flaky salt.',
       image: 'bowl-pilu.png',
     },
     {
       name: 'Remi',
       price: 18,
-      description: 'Brown rice, slow-braised pork\npibil, caramelized onion,\nspiced tomato, goddess\ncrema, pickled red onion,\ncilantro, lime',
+      description: 'Brown rice, slow-braised pork pibil, caramelized onion, spiced tomato, goddess crema, pickled red onion, cilantro, lime',
       image: 'bowl-remi.png',
     },
     {
       name: 'Ollie',
       price: 18,
-      description: 'Tri-color quinoa, jackfruit\ncarnitas, cauliflower mash,\nspinach, sunny lemon\nvinaigrette, avocado',
+      description: 'Tri-color quinoa, jackfruit carnitas, cauliflower mash, spinach, sunny lemon vinaigrette, avocado',
       image: 'bowl-ollie.png',
     },
   ] satisfies Combo[],
@@ -220,14 +220,14 @@ export const lilSides = {
   title: 'LIL’ SIDES',
   tagline: 'Served à la carte.',
   badge: { title: 'Little size!', subtitle: 'tapas-style for tiny hands' },
-  // 3 per row.
+  // 2 per row, 3 rows. Each tile shows a round photo (public/photos/<photo>.jpg).
   items: [
-    { name: 'Beet hummus\n& veggies', price: 8 },
-    { name: 'Russet potato\nhash', price: 7 },
-    { name: 'Toasted muesli\n& milk', price: 7 },
-    { name: 'Seasonal\nFruit', price: 7 },
-    { name: 'Bread &\nhouse jam', price: 6 },
-    { name: 'Pick any three\nsides for', note: 'a perfect\nlittle plate', price: 17, highlight: true },
+    { name: 'Beet hummus\n& veggies', photo: 'beet-hummus-veggies', price: 8 },
+    { name: 'Russet potato\nhash', photo: 'russet-potato-hash', price: 7 },
+    { name: 'Toasted muesli\n& milk', photo: 'toasted-muesli-milk', price: 7 },
+    { name: 'Seasonal\nFruit', photo: 'seasonal-fruit', price: 7 },
+    { name: 'Bread &\nhouse jam', photo: 'bread-house-jam', price: 6 },
+    { name: 'Pick any three\nsides for', photo: 'toddler-tapas', note: 'a perfect little plate', price: 17, highlight: true },
   ] satisfies Side[],
 };
 
@@ -241,6 +241,12 @@ export const freshlyBaked = {
 export const sips = {
   title: 'SIPS & POURS',
   tagline: 'Small-batch coffee, tea, and a few extras',
+  // Round photos next to the title (files in public/photos, from Shopify via `npm run photos`).
+  photos: [
+    { photo: 'latte', label: 'Latte' },
+    { photo: 'houjicha', label: 'Houjicha' },
+    { photo: 'iced-tea', label: 'Iced tea' },
+  ],
 };
 
 export const coffee: DrinkTable = {
