@@ -1,59 +1,61 @@
-import { Art, type ArtName } from './Art';
+import type { Allergen, Nutrition } from '../data/types';
+import { Icon } from './Art';
+import { allergenIcon, nutritionIcon } from './IconRow';
 
-const allergens: [ArtName, string, number, number][] = [
-  // icon, label, icon x, label x
-  ['icon-gluten', 'gluten', 1161.2, 1177],
-  ['icon-dairy', 'dairy', 1238.1, 1261.7],
-  ['icon-egg', 'egg', 1317.2, 1336.7],
-  ['icon-tree-nut', 'tree nut', 1381.4, 1404.9],
-  ['icon-vegan', 'vegan', 1475.5, 1497.3],
+const allergens: [Allergen, string][] = [
+  ['gluten', 'gluten'],
+  ['dairy', 'dairy'],
+  ['egg', 'egg'],
+  ['treeNut', 'tree nut'],
+  ['vegan', 'vegan'],
 ];
-const nutrition: [ArtName, string, number, number][] = [
-  ['icon-protein', 'protein', 1161.1, 1179.2],
-  ['icon-whole-grain', 'whole grain', 1246.2, 1265.2],
-  ['icon-antioxidant', 'antioxidant', 1353.7, 1376.5],
-  ['icon-good-fats', 'good fats', 1467.9, 1488.3],
-  ['icon-probiotic', 'probiotic', 1566.6, 1592.3],
+const nutrition: [Nutrition, string][] = [
+  ['protein', 'protein'],
+  ['wholeGrain', 'whole grain'],
+  ['antioxidant', 'antioxidant'],
+  ['goodFats', 'good fats'],
+  ['probiotic', 'probiotic'],
 ];
 
-const label = (text: string, x: number, y: number, size = 12.4) => (
-  <div className="t abs" style={{ left: x, top: y, fontSize: size, letterSpacing: size < 13 ? '-0.015em' : undefined }}>
-    {text}
+const HEAD_W = 128; // width of the ALLERGENS / NUTRITION column
+const item = (icon: React.ReactNode, text: string) => (
+  <div key={text} style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
+    {icon}
+    <span className="t" style={{ fontSize: 22, whiteSpace: 'nowrap' }}>
+      {text}
+    </span>
+  </div>
+);
+const row = (heading: string, top: number, items: React.ReactNode[], end?: React.ReactNode) => (
+  <div className="abs" style={{ left: 24, right: 24, top, height: 30, display: 'flex', alignItems: 'center', gap: 24 }}>
+    <span className="t" style={{ width: HEAD_W, fontSize: 22, letterSpacing: '0.02em', flex: 'none' }}>
+      {heading}
+    </span>
+    {items}
+    {end && <div style={{ marginLeft: 'auto' }}>{end}</div>}
   </div>
 );
 
-/** "Decode your plate" key, bottom right of board 1. */
-export function Legend() {
+/** "Decode your plate" key, bottom right of board 1: allergens (+ chef's pick) and nutrition, one row each. */
+export function Legend({ x = 800, y = 924, w = 1048, h = 128 }: { x?: number; y?: number; w?: number; h?: number }) {
   return (
-    <div style={{ color: 'var(--green-legend)' }}>
-      <div className="card" style={{ left: 1138.8, top: 881.9, width: 689, height: 168, borderRadius: 16, borderColor: 'var(--mint)' }} />
-      <div className="abs" style={{ left: 1281.1, top: 859.3, width: 288.9, height: 44.2, background: 'var(--cream)' }} />
-      {label('DECODE YOUR PLATE', 1288.7, 872.9, 26.5)}
-
-      {label('ALLERGENS', 1158.5, 909.5, 18.6)}
-      {allergens.map(([icon, text, ix, lx]) => (
-        <span key={icon}>
-          <Art name={icon} x={ix} />
-          {label(text, lx, 945.5)}
-        </span>
-      ))}
-
-      {label('NUTRITION', 1158.5, 978.8, 18.6)}
-      {nutrition.map(([icon, text, ix, lx]) => (
-        <span key={icon}>
-          <Art name={icon} x={ix} />
-          {label(text, lx, 1013.2)}
-        </span>
-      ))}
-
-      {label('PORTIONS', 1587.2, 909.5, 18.6)}
-      <Art name="portion-grownup" />
-      {label('grown-ups', 1629.5, 945.5)}
-      <Art name="portion-little" />
-      {label('little ones', 1745.2, 945.5)}
-
-      {label('CHEF’S PICK!', 1692.1, 978.8, 18.6)}
-      <Art name="chef-star" />
+    <div className="abs" style={{ left: x, top: y, width: w, height: h, color: 'var(--green-legend)', border: '2.5px solid var(--mint)', borderRadius: 16, background: 'var(--cream)' }}>
+      <div className="abs" style={{ left: 0, right: 0, top: -12, display: 'flex', justifyContent: 'center' }}>
+        <div className="t" style={{ fontSize: 28, padding: '0 18px', background: 'var(--cream)' }}>
+          DECODE YOUR PLATE
+        </div>
+      </div>
+      {row(
+        'ALLERGENS',
+        30,
+        allergens.map(([k, t]) => item(<Icon name={allergenIcon[k]} h={27} />, t)),
+        item(<Icon name="chef-star" w={30} />, 'chef’s pick'),
+      )}
+      {row(
+        'NUTRITION',
+        76,
+        nutrition.map(([k, t]) => item(<Icon name={nutritionIcon[k]} h={21} />, t)),
+      )}
     </div>
   );
 }
