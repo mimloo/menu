@@ -6,6 +6,8 @@ const SIZE = 24; // row text
 const ROW = 37;
 const FLAVOR_ROW = 26; // extra height for a flavors line
 const PRICE_W = 100;
+const GROUP_H = 42; // group heading cap top -> first row cap top
+const GROUP_GAP = 16; // extra space above every group after the first
 
 interface Props {
   table: Table;
@@ -20,10 +22,16 @@ export function DrinkTable({ table, x, ruleWidth, colRights, footerRight }: Prop
   const rowsTop = 326;
   const tops: number[] = [];
   let y = rowsTop;
-  for (const d of table.drinks) {
+  const groupTops: number[] = [];
+  table.drinks.forEach((d, r) => {
+    if (d.group) {
+      if (r > 0) y += GROUP_GAP;
+      groupTops[r] = y;
+      y += GROUP_H;
+    }
     tops.push(y);
     y += ROW + (d.flavors?.length ? FLAVOR_ROW : 0);
-  }
+  });
   const footerRule = y - 4;
   const price = (p: number, right: number, top: number, key?: number) => (
     <div key={key} className="t abs reg" style={{ left: right - PRICE_W, width: PRICE_W, top, fontSize: SIZE, textAlign: 'right' }}>
@@ -49,6 +57,12 @@ export function DrinkTable({ table, x, ruleWidth, colRights, footerRight }: Prop
         const top = tops[r];
         return (
           <div key={d.name}>
+            {d.group && (
+              <div className="t abs" style={{ left: x, top: groupTops[r], display: 'flex', alignItems: 'baseline', gap: 14, whiteSpace: 'nowrap' }}>
+                <span style={{ fontSize: 19, letterSpacing: '0.06em', textTransform: 'uppercase' }}>{d.group.title}</span>
+                {d.group.note && <span className="reg ink" style={{ fontSize: 17 }}>{d.group.note}</span>}
+              </div>
+            )}
             {d.chefsPick && <Icon name="chef-star" w={26} style={{ position: 'absolute', left: x - 33, top: top - 4 }} />}
             <div className="t abs" style={{ left: x, top, fontSize: SIZE, whiteSpace: 'nowrap' }}>
               {d.name}

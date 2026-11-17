@@ -46,6 +46,8 @@ export interface Drink {
   chefsPick?: boolean;
   /** Small line under the name, e.g. tea flavors. */
   flavors?: string[];
+  /** Starts a labeled group (small heading + note) above this row, e.g. "Tea lattes". */
+  group?: { title: string; note?: string };
 }
 
 export interface DrinkTable {

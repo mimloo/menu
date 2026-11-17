@@ -275,15 +275,16 @@ export const tea: DrinkTable = {
   tagline: 'Something soothing',
   sizes: ['8oz', '12oz', '16oz'],
   drinks: [
-    { name: 'Matcha', prices: [null, 7.45, 8.8] },
+    // Grouped so the price steps read clearly: lattes, then plain brewed tea, then hot chocolate.
+    { name: 'Matcha', prices: [null, 7.45, 8.8], group: { title: 'Tea lattes', note: 'Specialty blends, steamed & frothed' } },
     { name: 'Houjicha', prices: [null, 7.1, 8.45], chefsPick: true },
     { name: 'Masala chai', prices: [null, 7.1, 8.45] },
     { name: 'Thai tea', prices: [null, 7.1, 8.45] },
     { name: 'Turmeric ginger chai', prices: [null, 7.1, 8.45] },
     { name: 'London fog', prices: [null, 7.1, 8.45] },
-    { name: 'Hot chocolate', prices: [5.95, 7.25, null] },
-    { name: 'Hot tea', prices: [null, 5.6, null], flavors: ['Peppermint', 'Chamomile', 'Earl Grey', 'Jade Green'] },
+    { name: 'Hot tea', prices: [null, 5.6, null], flavors: ['Peppermint', 'Chamomile', 'Earl Grey', 'Jade Green'], group: { title: 'Brewed tea', note: 'Steeped to order' } },
     { name: 'Iced tea', prices: [null, 5.6, null], flavors: ['Black', 'Peach', 'Elderberry Hibiscus'] },
+    { name: 'Hot chocolate', prices: [5.95, 7.25, null], group: { title: '& more', note: 'Rich & cozy' } },
   ],
 };
 
