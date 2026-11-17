@@ -5,12 +5,19 @@ import { SectionHeader } from '../components/SectionHeader';
 import { addOns, coffee, freshlyBaked, lilSides, sips, tea } from '../data/menu';
 import { money } from '../lib/format';
 
-// Sips & pours on the left, Lil' sides + Freshly-baked on the right (plants decorate the bottom right).
+// Sips & pours on the left, Lil' sides + Freshly-baked on the right (pastries and plants decorate the bottom right).
 const SIPS = 72; // left edge of the Sips & pours column
 const SIDES = 1000; // left edge of the Lil' sides column
 // Lil' sides: 2 columns x 3 rows of tiles, each with a round photo on the left.
 const TILE = { x: [SIDES, SIDES + 432], y: [206, 356, 506], w: 416, h: 136, photo: 108 };
 const FRESH_Y = 708; // cap top of the Freshly-baked title
+// Freshly-baked: cut-out pastry photos (generated, public/assets/pastry-*.png) sitting on the wave at the bottom right.
+// Drawn back to front; w is the board width, height follows the image.
+const PASTRIES = [
+  { name: 'muffin', x: 1634, y: 770, w: 172 },
+  { name: 'scone', x: 1492, y: 872, w: 200 },
+  { name: 'cookie', x: 1730, y: 828, w: 162 },
+];
 const ADD = { x: SIPS - 16, y: 912, w: 876, h: 120 }; // Add-ons box, sitting on the wave
 const header = { y: 50, size: 60, ruleGap: 20, taglineGap: 16, taglineSize: 24 };
 
@@ -20,8 +27,6 @@ export function SidesSips() {
       <Art name="wave-3" />
       <Art name="plant-blades" x={1158.7} y={892} />
       <Art name="plant-sprout" x={1350.3} y={876.4} />
-      <Art name="plant-blades" x={1590.9} y={962.2} />
-      <Art name="plant-sprout" x={1690.6} y={881.9} style={{ transform: 'scaleX(-1)' }} />
 
       {/* Lil' sides */}
       <SectionHeader title={lilSides.title} tagline={lilSides.tagline} x={SIDES} {...header} />
@@ -74,6 +79,15 @@ export function SidesSips() {
           </div>
         </div>
       )}
+      {PASTRIES.map((p) => (
+        <img
+          key={p.name}
+          src={`/assets/pastry-${p.name}.png`}
+          alt=""
+          className="abs"
+          style={{ left: p.x, top: p.y, width: p.w, filter: 'drop-shadow(0 10px 14px rgba(52, 90, 95, 0.28))' }}
+        />
+      ))}
       {/* Up to 3 bakery photos to the right of the title, clear of the plants below. */}
       {freshlyBaked.photos.slice(0, 3).map((p, i) => {
         const d = 104;
