@@ -1,6 +1,5 @@
 import { Art } from '../components/Art';
 import { DrinkTable } from '../components/DrinkTable';
-import { ParentsNote } from '../components/ParentsNote';
 import { Photo } from '../components/Photo';
 import { SectionHeader } from '../components/SectionHeader';
 import { addOns, coffee, freshlyBaked, lilSides, sips, tea } from '../data/menu';
@@ -8,6 +7,7 @@ import { money } from '../lib/format';
 
 // Lil' sides: 2 columns x 3 rows of tiles, each with a round photo on the left.
 const TILE = { x: [72, 504], y: [206, 356, 506], w: 416, h: 136, photo: 108 };
+const FRESH_Y = 726; // cap top of the Freshly-baked title
 const header = { y: 50, size: 60, ruleGap: 20, taglineGap: 16, taglineSize: 24 };
 
 export function SidesSips() {
@@ -62,14 +62,26 @@ export function SidesSips() {
       <Art name="little-face" x={TILE.x[1] + TILE.w - 34} y={TILE.y[2] + TILE.h - 26} />
 
       {/* Freshly-baked */}
-      <SectionHeader title={freshlyBaked.title} tagline={freshlyBaked.tagline} x={72} y={696} size={60} ruleGap={20} taglineGap={16} taglineSize={24} />
+      <SectionHeader title={freshlyBaked.title} tagline={freshlyBaked.tagline} x={72} y={FRESH_Y} size={60} ruleGap={20} taglineGap={16} taglineSize={24} />
       {freshlyBaked.soldOut && (
-        <div className="pill" style={{ left: 560, top: 768, padding: '0 14px', display: 'flex', alignItems: 'center' }}>
+        <div className="pill" style={{ left: 560, top: FRESH_Y + 72, padding: '0 14px', display: 'flex', alignItems: 'center' }}>
           <div className="t reg ink" style={{ fontSize: 21 }}>
             {freshlyBaked.soldOut}
           </div>
         </div>
       )}
+      {freshlyBaked.photos.slice(0, 5).map((p, i) => {
+        const d = 128;
+        const x = 72 + i * 172;
+        return (
+          <div key={p.photo}>
+            <Photo name={p.photo} x={x} y={FRESH_Y + 132} d={d} />
+            <div className="t abs ink" style={{ left: x - 20, width: d + 40, top: FRESH_Y + 132 + d + 18, fontSize: 18, textAlign: 'center' }}>
+              {p.label}
+            </div>
+          </div>
+        );
+      })}
 
       {/* Sips & pours */}
       <SectionHeader title={sips.title} tagline={sips.tagline} x={992} {...header} ruleX={0} />
@@ -105,7 +117,6 @@ export function SidesSips() {
         </div>
       ))}
 
-      <ParentsNote />
     </>
   );
 }

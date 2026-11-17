@@ -5,9 +5,9 @@ import { ParentsNote } from '../components/ParentsNote';
 import { SectionHeader } from '../components/SectionHeader';
 import { brunch, mains } from '../data/menu';
 
-const ROWS = [196, 418, 640]; // cap top of each dish name
+const ROWS = [198, 436, 674]; // cap top of each dish name
 const COLS = [72, 680, 1288]; // left edge of each column (photo)
-const COL_W = 568;
+const COL_W = 576;
 const oneLine = (s: string) => s.replace(/\n/g, ' ');
 
 export function BrunchMains() {

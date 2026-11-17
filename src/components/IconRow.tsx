@@ -18,8 +18,8 @@ export const nutritionIcon: Record<Nutrition, ArtName> = {
 };
 
 /** Icon heights in board px. Allergen glyphs are line art and need to be taller than the filled nutrition glyphs. */
-export const ALLERGEN_H = 25;
-export const NUTRITION_H = 20;
+export const ALLERGEN_H = 27;
+export const NUTRITION_H = 21;
 
 /** Allergens | nutrition, under every dish. (Portion icons are gone: every dish has a kid version.) */
 export function IconRow({ allergens, nutrition }: { allergens: Allergen[]; nutrition: Nutrition[] }) {

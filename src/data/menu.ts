@@ -2,11 +2,11 @@
 // Source of truth: Mimloo_Menu_Final.pdf. Never invent items or prices.
 import type { Combo, Dish, DrinkTable, PickGroup, Side } from './types';
 
+// Board 1 footer, next to the peach character. Keep it short; baristas explain the details.
 export const parentsNote = {
   title: ['A note', 'for parents'],
-  lead: 'Every dish has a kid version:',
-  body: 'smaller portion, components served separated, milder seasoning, easier-to-eat shapes. Just order, and we’ll plate it for the littles.',
-  pill: 'HALF PORTION, HALF COST!',
+  lead: 'Kid version:',
+  body: 'half portion, half cost!',
 };
 
 /* ---------- Board 1: All Day Brunch + Mains ---------- */
@@ -236,6 +236,10 @@ export const freshlyBaked = {
   tagline: 'Small-batch, made the same morning',
   // Shown as a pill under the tagline; set to '' when pastries are back.
   soldOut: '',
+  // Round photos under the tagline (up to 5). Shopify bakery products have no images yet: upload them, add the
+  // image URLs to scripts/photos.json, run `npm run photos`, then list them here, e.g.
+  // { photo: 'blueberry-crumb-muffin', label: 'Blueberry crumb muffin' }
+  photos: [] as { photo: string; label: string }[],
 };
 
 export const sips = {
