@@ -11,6 +11,7 @@ const SIDES = 1000; // left edge of the Lil' sides column
 // Lil' sides: 2 columns x 3 rows of tiles, each with a round photo on the left.
 const TILE = { x: [SIDES, SIDES + 432], y: [206, 356, 506], w: 416, h: 136, photo: 108 };
 const FRESH_Y = 708; // cap top of the Freshly-baked title
+const ADD = { x: SIPS - 16, y: 912, w: 876, h: 120 }; // Add-ons box, sitting on the wave
 const header = { y: 50, size: 60, ruleGap: 20, taglineGap: 16, taglineSize: 24 };
 
 export function SidesSips() {
@@ -104,23 +105,25 @@ export function SidesSips() {
       <DrinkTable table={coffee} x={SIPS} ruleWidth={400} colRights={[SIPS + 236, SIPS + 316, SIPS + 396]} />
       <DrinkTable table={tea} x={SIPS + 450} ruleWidth={408} colRights={[SIPS + 698, SIPS + 778, SIPS + 858]} />
 
-      {/* Add-ons */}
-      <div className="card" style={{ left: SIPS - 16, top: 708, width: 876, height: 138, background: 'transparent' }} />
-      <div className="t abs tight" style={{ left: SIPS + 8, top: 730, fontSize: 40 }}>
-        {addOns.title}
-      </div>
-      <div className="t abs ink" style={{ left: SIPS + 8, top: 776, fontSize: 21 }}>
-        {addOns.tagline}
-      </div>
-      <div className="t abs reg tight" style={{ left: SIPS + 8, top: 808, fontSize: 28 }}>
-        {addOns.price.map((p) => money(p, true)).join(' – ')}
-      </div>
-      {addOns.items.map((a, i) => (
-        <div key={a} className="t abs" style={{ left: SIPS + (i < 2 ? 308 : 588), top: 752 + (i % 2) * 44, fontSize: 23 }}>
-          {a}
+      {/* Add-ons: a compact key on the green field, styled like board 1's "Decode your plate". */}
+      <div className="abs" style={{ left: ADD.x, top: ADD.y, width: ADD.w, height: ADD.h, border: '2.5px solid var(--mint)', borderRadius: 16, background: 'var(--cream)' }}>
+        <div className="abs" style={{ left: 0, right: 0, top: -12, display: 'flex', justifyContent: 'center' }}>
+          <div className="t" style={{ fontSize: 28, padding: '0 18px', background: 'var(--cream)', textTransform: 'uppercase' }}>
+            {addOns.title}
+          </div>
         </div>
-      ))}
-
+        <div className="t abs ink" style={{ left: 24, top: 32, fontSize: 21 }}>
+          {addOns.tagline}
+        </div>
+        <div className="t abs reg tight" style={{ left: 24, top: 70, fontSize: 28 }}>
+          {addOns.price.map((p) => money(p, true)).join(' – ')}
+        </div>
+        {addOns.items.map((a, i) => (
+          <div key={a} className="t abs" style={{ left: i < 2 ? 292 : 584, top: 32 + (i % 2) * 40, fontSize: 23 }}>
+            {a}
+          </div>
+        ))}
+      </div>
     </>
   );
 }
