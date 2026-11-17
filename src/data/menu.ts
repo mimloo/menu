@@ -2,11 +2,11 @@
 // Source of truth: Mimloo_Menu_Final.pdf. Never invent items or prices.
 import type { Combo, Dish, DrinkTable, PickGroup, Side } from './types';
 
-// Board 1 footer, next to the peach character. Keep it short; baristas explain the details.
 export const parentsNote = {
   title: ['A note', 'for parents'],
-  lead: 'Kid version:',
-  body: 'half portion, half cost!',
+  lead: 'Every dish has a kid version:',
+  body: 'smaller portion, components served separated,\nmilder seasoning, easier-to-eat shapes. Just order, and we’ll plate it for the littles.',
+  pill: 'HALF PORTION, HALF COST!',
 };
 
 /* ---------- Board 1: All Day Brunch + Mains ---------- */

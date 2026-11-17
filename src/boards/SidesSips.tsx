@@ -5,9 +5,12 @@ import { SectionHeader } from '../components/SectionHeader';
 import { addOns, coffee, freshlyBaked, lilSides, sips, tea } from '../data/menu';
 import { money } from '../lib/format';
 
+// Sips & pours on the left, Lil' sides + Freshly-baked on the right (plants decorate the bottom right).
+const SIPS = 72; // left edge of the Sips & pours column
+const SIDES = 1000; // left edge of the Lil' sides column
 // Lil' sides: 2 columns x 3 rows of tiles, each with a round photo on the left.
-const TILE = { x: [72, 504], y: [206, 356, 506], w: 416, h: 136, photo: 108 };
-const FRESH_Y = 726; // cap top of the Freshly-baked title
+const TILE = { x: [SIDES, SIDES + 432], y: [206, 356, 506], w: 416, h: 136, photo: 108 };
+const FRESH_Y = 708; // cap top of the Freshly-baked title
 const header = { y: 50, size: 60, ruleGap: 20, taglineGap: 16, taglineSize: 24 };
 
 export function SidesSips() {
@@ -20,12 +23,12 @@ export function SidesSips() {
       <Art name="plant-sprout" x={1690.6} y={881.9} style={{ transform: 'scaleX(-1)' }} />
 
       {/* Lil' sides */}
-      <SectionHeader title={lilSides.title} tagline={lilSides.tagline} x={72} {...header} />
-      <Art name="cloud-little-size" x={540} y={22} w={360} />
-      <div className="t abs" style={{ left: 667, top: 98, fontSize: 23 }}>
+      <SectionHeader title={lilSides.title} tagline={lilSides.tagline} x={SIDES} {...header} />
+      <Art name="cloud-little-size" x={SIDES + 468} y={22} w={360} />
+      <div className="t abs" style={{ left: SIDES + 595, top: 98, fontSize: 23 }}>
         {lilSides.badge.title}
       </div>
-      <div className="t abs reg ink" style={{ left: 665, top: 131, fontSize: 17 }}>
+      <div className="t abs reg ink" style={{ left: SIDES + 593, top: 131, fontSize: 17 }}>
         {lilSides.badge.subtitle}
       </div>
       {lilSides.items.map((s, i) => {
@@ -62,21 +65,22 @@ export function SidesSips() {
       <Art name="little-face" x={TILE.x[1] + TILE.w - 34} y={TILE.y[2] + TILE.h - 26} />
 
       {/* Freshly-baked */}
-      <SectionHeader title={freshlyBaked.title} tagline={freshlyBaked.tagline} x={72} y={FRESH_Y} size={60} ruleGap={20} taglineGap={16} taglineSize={24} />
+      <SectionHeader title={freshlyBaked.title} tagline={freshlyBaked.tagline} x={SIDES} y={FRESH_Y} size={60} ruleGap={20} taglineGap={16} taglineSize={24} />
       {freshlyBaked.soldOut && (
-        <div className="pill" style={{ left: 560, top: FRESH_Y + 72, padding: '0 14px', display: 'flex', alignItems: 'center' }}>
+        <div className="pill" style={{ left: SIDES + 488, top: FRESH_Y + 72, padding: '0 14px', display: 'flex', alignItems: 'center' }}>
           <div className="t reg ink" style={{ fontSize: 21 }}>
             {freshlyBaked.soldOut}
           </div>
         </div>
       )}
-      {freshlyBaked.photos.slice(0, 5).map((p, i) => {
-        const d = 128;
-        const x = 72 + i * 172;
+      {/* Up to 3 bakery photos to the right of the title, clear of the plants below. */}
+      {freshlyBaked.photos.slice(0, 3).map((p, i) => {
+        const d = 104;
+        const x = SIDES + 500 + i * 116;
         return (
           <div key={p.photo}>
-            <Photo name={p.photo} x={x} y={FRESH_Y + 132} d={d} />
-            <div className="t abs ink" style={{ left: x - 20, width: d + 40, top: FRESH_Y + 132 + d + 18, fontSize: 18, textAlign: 'center' }}>
+            <Photo name={p.photo} x={x} y={FRESH_Y - 14} d={d} />
+            <div className="t abs ink" style={{ left: x - 20, width: d + 40, top: FRESH_Y - 14 + d + 16, fontSize: 17, textAlign: 'center' }}>
               {p.label}
             </div>
           </div>
@@ -84,10 +88,10 @@ export function SidesSips() {
       })}
 
       {/* Sips & pours */}
-      <SectionHeader title={sips.title} tagline={sips.tagline} x={992} {...header} ruleX={0} />
+      <SectionHeader title={sips.title} tagline={sips.tagline} x={SIPS} {...header} ruleX={0} />
       {sips.photos.map((p, i) => {
         const d = 104;
-        const x = 1514 + i * 116;
+        const x = SIPS + 522 + i * 116;
         return (
           <div key={p.photo}>
             <Photo name={p.photo} x={x} y={26} d={d} />
@@ -97,22 +101,22 @@ export function SidesSips() {
           </div>
         );
       })}
-      <DrinkTable table={coffee} x={992} ruleWidth={400} colRights={[1228, 1308, 1388]} />
-      <DrinkTable table={tea} x={1442} ruleWidth={408} colRights={[1690, 1770, 1850]} />
+      <DrinkTable table={coffee} x={SIPS} ruleWidth={400} colRights={[SIPS + 236, SIPS + 316, SIPS + 396]} />
+      <DrinkTable table={tea} x={SIPS + 450} ruleWidth={408} colRights={[SIPS + 698, SIPS + 778, SIPS + 858]} />
 
       {/* Add-ons */}
-      <div className="card" style={{ left: 976, top: 712, width: 876, height: 150, background: 'transparent' }} />
-      <div className="t abs tight" style={{ left: 1000, top: 736, fontSize: 40 }}>
+      <div className="card" style={{ left: SIPS - 16, top: 708, width: 876, height: 138, background: 'transparent' }} />
+      <div className="t abs tight" style={{ left: SIPS + 8, top: 730, fontSize: 40 }}>
         {addOns.title}
       </div>
-      <div className="t abs ink" style={{ left: 1000, top: 786, fontSize: 21 }}>
+      <div className="t abs ink" style={{ left: SIPS + 8, top: 776, fontSize: 21 }}>
         {addOns.tagline}
       </div>
-      <div className="t abs reg tight" style={{ left: 1000, top: 822, fontSize: 28 }}>
+      <div className="t abs reg tight" style={{ left: SIPS + 8, top: 808, fontSize: 28 }}>
         {addOns.price.map((p) => money(p, true)).join(' – ')}
       </div>
       {addOns.items.map((a, i) => (
-        <div key={a} className="t abs" style={{ left: i < 2 ? 1300 : 1580, top: 762 + (i % 2) * 44, fontSize: 23 }}>
+        <div key={a} className="t abs" style={{ left: SIPS + (i < 2 ? 308 : 588), top: 752 + (i % 2) * 44, fontSize: 23 }}>
           {a}
         </div>
       ))}
