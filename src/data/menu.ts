@@ -282,7 +282,7 @@ export const tea: DrinkTable = {
     { name: 'Thai tea', prices: [null, 7.1, 8.45] },
     { name: 'Turmeric ginger chai', prices: [null, 7.1, 8.45] },
     { name: 'London fog', prices: [null, 7.1, 8.45] },
-    { name: 'Hot tea', prices: [null, 5.6, null], flavors: ['Peppermint', 'Chamomile', 'Earl Grey', 'Jade Green'], group: { title: 'Brewed tea', note: 'Steeped to order' } },
+    { name: 'Hot tea', prices: [null, 5.6, null], flavors: ['Peppermint', 'Chamomile', 'Earl Grey', 'Jade Green', 'English Breakfast', 'Jasmine'], group: { title: 'Brewed tea', note: 'Steeped to order' } },
     { name: 'Iced tea', prices: [null, 5.6, null], flavors: ['Black', 'Peach', 'Elderberry Hibiscus'] },
     { name: 'Hot chocolate', prices: [5.95, 7.25, null], group: { title: '& more', note: 'Rich & cozy' } },
   ],

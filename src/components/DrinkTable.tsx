@@ -6,6 +6,13 @@ const SIZE = 24; // row text
 const ROW = 37;
 const FLAVOR_ROW = 26; // extra height for a flavors line
 const PRICE_W = 100;
+const FLAVOR_LINE = 22; // each extra flavors line
+const FLAVORS_PER_LINE = 4; // longer lists wrap into evenly split lines
+const flavorLines = (f: string[]) => {
+  const n = Math.ceil(f.length / FLAVORS_PER_LINE);
+  const per = Math.ceil(f.length / n);
+  return Array.from({ length: n }, (_, i) => f.slice(i * per, (i + 1) * per).join(' · '));
+};
 const GROUP_H = 42; // group heading cap top -> first row cap top
 const GROUP_GAP = 16; // extra space above every group after the first
 
@@ -29,7 +36,7 @@ export function DrinkTable({ table, x, ruleWidth, colRights }: Props) {
       y += GROUP_H;
     }
     tops.push(y);
-    y += ROW + (d.flavors?.length ? FLAVOR_ROW : 0);
+    y += ROW + (d.flavors?.length ? FLAVOR_ROW + (flavorLines(d.flavors).length - 1) * FLAVOR_LINE : 0);
   });
   const footerRule = y - 4;
   // Only the first block of rows (up to the second group) uses the size columns. Later groups and the footer
@@ -85,8 +92,8 @@ export function DrinkTable({ table, x, ruleWidth, colRights }: Props) {
               {r >= colCount && inline(d.prices, true)}
             </div>
             {d.flavors?.length ? (
-              <div className="t abs reg ink" style={{ left: x, top: top + 29, fontSize: 17, whiteSpace: 'nowrap' }}>
-                {d.flavors.join(' · ')}
+              <div className="t abs reg ink" style={{ left: x, top: top + 29, fontSize: 17, lineHeight: `${FLAVOR_LINE}px`, whiteSpace: 'pre' }}>
+                {flavorLines(d.flavors).join('\n')}
               </div>
             ) : null}
             {r < colCount && d.prices.map((p, i) => (p == null ? null : price(p, colRights[i], top, i)))}
