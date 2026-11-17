@@ -49,7 +49,13 @@ export function Legend({ x = 800, y = 894, w = 1048, h = 128 }: { x?: number; y?
         'ALLERGENS',
         30,
         allergens.map(([k, t]) => item(<Icon name={allergenIcon[k]} h={27} />, t)),
-        item(<Icon name="chef-star" w={30} />, 'chef’s pick'),
+        // A pill, so it reads as its own thing rather than a sixth allergen.
+        <div style={{ display: 'flex', alignItems: 'center', gap: 9, height: 38, padding: '0 5px 0 10px', borderRadius: 8, background: 'var(--mint)', color: 'var(--teal)' }}>
+          <Icon name="chef-star" w={28} />
+          <span className="t" style={{ fontSize: 22, whiteSpace: 'nowrap' }}>
+            chef’s pick
+          </span>
+        </div>,
       )}
       {row(
         'NUTRITION',
