@@ -15,10 +15,9 @@ interface Props {
   ruleWidth: number;
   /** Right edge of each size column (prices are right-aligned; size labels are centered over the price). */
   colRights: number[];
-  footerRight?: number;
 }
 
-export function DrinkTable({ table, x, ruleWidth, colRights, footerRight }: Props) {
+export function DrinkTable({ table, x, ruleWidth, colRights }: Props) {
   const rowsTop = 326;
   const tops: number[] = [];
   let y = rowsTop;
@@ -33,6 +32,23 @@ export function DrinkTable({ table, x, ruleWidth, colRights, footerRight }: Prop
     y += ROW + (d.flavors?.length ? FLAVOR_ROW : 0);
   });
   const footerRule = y - 4;
+  // Only the first block of rows (up to the second group) uses the size columns. Later groups and the footer
+  // print their price right after the name, so a single-size drink never looks like it sits under a column.
+  const split = table.drinks.findIndex((d, r) => r > 0 && d.group);
+  const colCount = split < 0 ? table.drinks.length : split;
+  const usedSizes = table.sizes.map((_, i) => table.drinks.slice(0, colCount).some((d) => d.prices[i] != null));
+  const inline = (prices: (number | null)[], sized: boolean) => (
+    <span className="reg" style={{ marginLeft: 18 }}>
+      {prices.map((p, i) =>
+        p == null ? null : (
+          <span key={i} style={{ marginRight: 16 }}>
+            {sized && <span className="ink" style={{ fontSize: 17, marginRight: 7 }}>{table.sizes[i]}</span>}
+            {money(p, true)}
+          </span>
+        ),
+      )}
+    </span>
+  );
   const price = (p: number, right: number, top: number, key?: number) => (
     <div key={key} className="t abs reg" style={{ left: right - PRICE_W, width: PRICE_W, top, fontSize: SIZE, textAlign: 'right' }}>
       {money(p, true)}
@@ -46,7 +62,7 @@ export function DrinkTable({ table, x, ruleWidth, colRights, footerRight }: Prop
       <div className="t abs ink" style={{ left: x, top: 248, fontSize: 20 }}>
         {table.tagline}
       </div>
-      {table.sizes.map((s, i) => (
+      {table.sizes.map((s, i) => !usedSizes[i] ? null : (
         <div key={s} className="t abs ink" style={{ left: colRights[i] - 60, width: 70, top: 282, fontSize: 20, textAlign: 'center' }}>
           {s}
         </div>
@@ -66,13 +82,14 @@ export function DrinkTable({ table, x, ruleWidth, colRights, footerRight }: Prop
             {d.chefsPick && <Icon name="chef-star" w={26} style={{ position: 'absolute', left: x - 33, top: top - 4 }} />}
             <div className="t abs" style={{ left: x, top, fontSize: SIZE, whiteSpace: 'nowrap' }}>
               {d.name}
+              {r >= colCount && inline(d.prices, true)}
             </div>
             {d.flavors?.length ? (
               <div className="t abs reg ink" style={{ left: x, top: top + 29, fontSize: 17, whiteSpace: 'nowrap' }}>
                 {d.flavors.join(' · ')}
               </div>
             ) : null}
-            {d.prices.map((p, i) => (p == null ? null : price(p, colRights[i], top, i)))}
+            {r < colCount && d.prices.map((p, i) => (p == null ? null : price(p, colRights[i], top, i)))}
           </div>
         );
       })}
@@ -82,10 +99,10 @@ export function DrinkTable({ table, x, ruleWidth, colRights, footerRight }: Prop
           <div className="abs" style={{ left: x, top: footerRule, width: ruleWidth, height: 2, background: 'var(--rule)' }} />
           {table.footer.map((f, i) => (
             <div key={f.name}>
-              <div className="t abs" style={{ left: x, top: footerRule + 20 + i * ROW, fontSize: SIZE }}>
+              <div className="t abs" style={{ left: x, top: footerRule + 20 + i * ROW, fontSize: SIZE, whiteSpace: 'nowrap' }}>
                 {f.name}
+                {inline([f.price], false)}
               </div>
-              {price(f.price, footerRight ?? colRights.at(-1)!, footerRule + 20 + i * ROW)}
             </div>
           ))}
         </>
