@@ -37,7 +37,7 @@ const row = (heading: string, top: number, items: React.ReactNode[], end?: React
 );
 
 /** "Decode your plate" key, bottom right of board 1: allergens (+ chef's pick) and nutrition, one row each. */
-export function Legend({ x = 800, y = 924, w = 1048, h = 128 }: { x?: number; y?: number; w?: number; h?: number }) {
+export function Legend({ x = 800, y = 894, w = 1048, h = 128 }: { x?: number; y?: number; w?: number; h?: number }) {
   return (
     <div className="abs" style={{ left: x, top: y, width: w, height: h, color: 'var(--green-legend)', border: '2.5px solid var(--mint)', borderRadius: 16, background: 'var(--cream)' }}>
       <div className="abs" style={{ left: 0, right: 0, top: -12, display: 'flex', justifyContent: 'center' }}>
